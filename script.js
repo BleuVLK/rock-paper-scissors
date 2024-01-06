@@ -112,6 +112,12 @@ function ifWinner(winner) {
 }
 
 
+function reset() {
+    userScore = 0;
+    compScore = 0;
+}
+
+
 const ROCK = document.querySelector('#rock');
 ROCK.addEventListener('click', () => {
     compareChoices('Rock');
@@ -125,5 +131,15 @@ PAPER.addEventListener('click', () => {
 const SCISSORS = document.querySelector("#scissors");
 SCISSORS.addEventListener('click', () => {
     compareChoices('Scissors');
+})
+
+const RESET = document.querySelector('#reset');
+RESET.addEventListener('click', () => {
+    reset();
+    updateScores();
+    document.querySelector('#player').style.cssText = '';
+    document.querySelector('#user-score').style.cssText = '';
+    document.querySelector('#comp').style.cssText = '';
+    document.querySelector('#computer-score').style.cssText = '';
 })
 

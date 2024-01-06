@@ -43,7 +43,8 @@ body {
     gap: 3em;
 }
 
-.options * {
+
+.rps * {
     height: 32px;
     width: 32px;
     border-radius: 20px;
@@ -53,6 +54,25 @@ body {
     margin-bottom: 2em;
 }
 
+.rps {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em;
+    gap: 3em;
+    
+}
+
+#reset {
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid #E1E1E1;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 2em;
+    margin-left: 1.5em;
+
+}
 button:hover {
     text-shadow: 0 0 10px #ffffff;
     box-shadow: 0 0 10px #ffffff;
