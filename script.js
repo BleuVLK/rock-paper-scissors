@@ -63,10 +63,11 @@ function updateScores(userScore, compScore) {
 
 
 function printResults(message) {
-    const RESULTS = document.querySelector('.results');
+    const RESULTS = document.querySelector('.matches');
     const ENTRY = document.createElement('p');
+    ENTRY.classList.toggle('round-result')
     ENTRY.textContent = message;
-    RESULTS.appendChild(ENTRY);
+    RESULTS.prepend(ENTRY);
 }
 
 
@@ -95,6 +96,7 @@ function checkForWinner() {
     }   
 }
 
+
 function ifWinner(winner) {
     if (winner === true) {
         const PLAYER = document.querySelector('#player');
@@ -108,6 +110,7 @@ function ifWinner(winner) {
         COMP_SCORE.style.cssText = 'color: #DC1F3C; text-shadow: 0 0 10px #DC143C';
     }
 }
+
 
 const ROCK = document.querySelector('#rock');
 ROCK.addEventListener('click', () => {
