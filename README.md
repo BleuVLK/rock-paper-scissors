@@ -1,3 +1,3 @@
-Rock-Paper-Scissors Assignment
+Revised Rock-Paper-Scissors Assignment
 
-Objective: to use javascript to create a simple console-based rock-paper-scissors game
+Objective: to add a simple UI to the Rock-Paper-Scissors game

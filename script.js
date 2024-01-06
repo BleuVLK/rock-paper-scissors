@@ -18,65 +18,109 @@ function computer() {
 }
 
 
-
-function user() {
-    const VALID_CHOICES = ["Rock", "Paper", "Scissors"];
-    let userChoice = prompt(`Write "Rock", "Paper" or "Scissors": `).toLowerCase();
-    userChoice = userChoice.charAt(0).toUpperCase() + userChoice.slice(1);
-    return VALID_CHOICES.includes(userChoice) ? userChoice : user();
-}
+let userScore = 0
+let compScore = 0
 
 
-
-function compareChoices(ownChoice, compChoice) {
+function compareChoices(ownChoice) {
+    let compChoice = computer();
     congratulations = `You win! ${ownChoice} beats ${compChoice}`;
-    let winner = true;
     switch (true) {
         case ownChoice === compChoice:
-            winner = false;
-            console.log(`Both have drawn ${ownChoice}. Let's draw again!`);
-            let newCompChoice = computer();
-            let newOwnChoice = user();
-            compareChoices(newOwnChoice, newCompChoice);
+            printResults(`Both have drawn ${ownChoice}. Let's draw again!`);
             break;
         case ownChoice === "Rock" && compChoice === "Scissors":
-            console.log(congratulations);
+            userScore++;
+            updateScores(userScore, compScore);
+            printResults(congratulations);
             break;
         case ownChoice === "Paper" && compChoice === "Rock":
-            console.log(congratulations);
+            userScore++;
+            updateScores(userScore, compScore);
+            printResults(congratulations)
             break;
         case ownChoice === "Scissors" && compChoice === "Paper":
-            console.log(congratulations);
+            userScore++;
+            updateScores(userScore, compScore);
+            printResults(congratulations)
             break;
         default:
-            console.log(`You lose! ${compChoice} beats ${ownChoice}`)
-            winner = false;
+            compScore++;
+            updateScores(userScore, compScore);
+            printResults(`You lose! ${compChoice} beats ${ownChoice}`)
             break;          
     }
-    return winner;
+    checkForWinner();
 }
 
 
-function game() {
-    let matchNumber = 1
-    let ownScore = 0;
-    let compScore = 0;
-    index = 0
-    while (index < 5 && ownScore !== 3 && compScore !== 3) {
-        console.log(`Rock-Paper-Scissors Competition (Game ${matchNumber}/5);
-        Current Scores: Player 1:  ${ownScore} - Computer: ${compScore}`);
-        let compChoice = computer();
-        let ownChoice = user();
-        let winner = compareChoices(ownChoice, compChoice);
-        winner ? ownScore++ : compScore++;
-        matchNumber++;
-        index++;
+function updateScores(userScore, compScore) {
+    const USER_SCORE = document.querySelector("#user-score");
+    USER_SCORE.textContent = userScore;   
+    const COMPUTER_SCORE = document.querySelector("#computer-score");
+    COMPUTER_SCORE.textContent = compScore;
+}
+
+
+function printResults(message) {
+    const RESULTS = document.querySelector('.results');
+    const ENTRY = document.createElement('p');
+    ENTRY.textContent = message;
+    RESULTS.appendChild(ENTRY);
+}
+
+
+function checkForWinner() {
+    const PLAYER_WIN = true;
+    const COMP_WIN = false; 
+    switch(true) {
+        case userScore === 3:
+            alert("Congratulions! You're the winner!");
+            ifWinner(PLAYER_WIN);
+            break;
+        case compScore === 3:
+            alert("The computer wins");
+            ifWinner(COMP_WIN);
+            break;
+        case userScore === 5:
+            alert("Congratulations! You're the winner!");
+            ifWinner(PLAYER_WIN);
+            break;
+        case compScore === 5:
+            alert("The computer wins");
+            ifWinner(COMP_WIN);
+            break;
+        default:
+            break;        
+    }   
+}
+
+function ifWinner(winner) {
+    if (winner === true) {
+        const PLAYER = document.querySelector('#player');
+        PLAYER.style.cssText = 'color: #ADDFFF; text-shadow: 0 0 10px #ADDFFF';
+        const PLAYER_SCORE = document.querySelector('#user-score');
+        PLAYER_SCORE.style.cssText = 'color: #ADDFFF; text-shadow: 0 0 10px #ADDFFF';
+    } else {
+        const COMP = document.querySelector('#comp');
+        COMP.style.cssText = 'color: #DC1F3C; text-shadow: 0 0 10px #DC143C';
+        const COMP_SCORE = document.querySelector('#computer-score');
+        COMP_SCORE.style.cssText = 'color: #DC1F3C; text-shadow: 0 0 10px #DC143C';
     }
-    victory = `Congratulations! You've won ${ownScore} - ${compScore}`;
-    defeat = `I'm sorry! You've lost ${compScore} - ${ownScore}`;
-    console.log(ownScore > compScore ? victory : defeat);
-
 }
 
+const ROCK = document.querySelector('#rock');
+ROCK.addEventListener('click', () => {
+    compareChoices('Rock');
+})
 
-game();
+const PAPER = document.querySelector('#paper');
+PAPER.addEventListener('click', () => {
+    compareChoices('Paper');
+})
+
+const SCISSORS = document.querySelector("#scissors");
+SCISSORS.addEventListener('click', () => {
+    compareChoices('Scissors');
+})
+

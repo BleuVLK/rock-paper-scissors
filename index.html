@@ -3,8 +3,24 @@
     <header>
         <meta charset="uft-8">
         <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="./style.css">
+        <script src="./script.js" defer></script>
     </header>
     <body>
-        <script src="./script.js"></script>
+        <div class="scores">
+            <h2>CURRENT SCORES</h2>
+            <div class="players">
+                <p id="player">Player: <span id="user-score"></span></p>
+                <p id="comp">Computer: <span id="computer-score"></p>
+            </div>
+            <div class="options">
+                <button id="rock">R</button>
+                <button id="paper">P</button>
+                <button id="scissors">S</button>
+            </div>
+            <div class="results">
+                <p id="title">MATCH HISTORY<p>
+            </div>
+        </div>
     </body>
 </html>
