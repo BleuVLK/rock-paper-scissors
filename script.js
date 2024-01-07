@@ -141,5 +141,10 @@ RESET.addEventListener('click', () => {
     document.querySelector('#user-score').style.cssText = '';
     document.querySelector('#comp').style.cssText = '';
     document.querySelector('#computer-score').style.cssText = '';
+    const TO_DELETE = document.getElementsByClassName('round-result');
+    Array.from(TO_DELETE).forEach(item => {
+        item.remove();
+    })
 })
+
 
